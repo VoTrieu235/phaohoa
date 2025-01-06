@@ -22,10 +22,10 @@ var canvas = document.getElementById( 'canvas' ),
 		// starting hue
 		hue = 120,
 		// when launching fireworks with a click, too many get launched at once without a limiter, one launch per 5 loop ticks
-		limiterTotal = 5,
+		limiterTotal = 99,
 		limiterTick = 0,
 		// this will time the auto launches of fireworks, one launch per 80 loop ticks
-		timerTotal = 80,
+		timerTotal = 100,
 		timerTick = 0,
 		mousedown = false,
 		// mouse x coordinate,
@@ -136,13 +136,13 @@ function Particle( x, y ) {
 	this.y = y;
 	// track the past coordinates of each particle to create a trail effect, increase the coordinate count to create more prominent trails
 	this.coordinates = [];
-	this.coordinateCount = 5;
+	this.coordinateCount = 50;
 	while( this.coordinateCount-- ) {
 		this.coordinates.push( [ this.x, this.y ] );
 	}
 	// set a random angle in all possible directions, in radians
 	this.angle = random( 0, Math.PI * 2 );
-	this.speed = random( 1, 10 );
+	this.speed = random( 1, 100 );
 	// friction will slow the particle down
 	this.friction = 0.95;
 	// gravity will be applied and pull the particle down
