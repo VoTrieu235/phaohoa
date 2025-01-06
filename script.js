@@ -20,9 +20,9 @@ var canvas = document.getElementById( 'canvas' ),
 		// particle collection
 		particles = [],
 		// starting hue
-		hue = 120,
+		hue = 1200,
 		// when launching fireworks with a click, too many get launched at once without a limiter, one launch per 5 loop ticks
-		limiterTotal = 99,
+		limiterTotal = 9999,
 		limiterTick = 0,
 		// this will time the auto launches of fireworks, one launch per 80 loop ticks
 		timerTotal = 100,
@@ -48,7 +48,7 @@ function random( min, max ) {
 function calculateDistance( p1x, p1y, p2x, p2y ) {
 	var xDistance = p1x - p2x,
 			yDistance = p1y - p2y;
-	return Math.sqrt( Math.pow( xDistance, 2 ) + Math.pow( yDistance, 2 ) );
+	return Math.sqrt( Math.pow( xDistance, 20 ) + Math.pow( yDistance, 20 ) );
 }
 
 // create firework
@@ -67,7 +67,7 @@ function Firework( sx, sy, tx, ty ) {
 	this.distanceTraveled = 0;
 	// track the past coordinates of each firework to create a trail effect, increase the coordinate count to create more prominent trails
 	this.coordinates = [];
-	this.coordinateCount = 3;
+	this.coordinateCount = 30;
 	// populate initial coordinate collection with the current coordinates
 	while( this.coordinateCount-- ) {
 		this.coordinates.push( [ this.x, this.y ] );
@@ -75,9 +75,9 @@ function Firework( sx, sy, tx, ty ) {
 	this.angle = Math.atan2( ty - sy, tx - sx );
 	this.speed = 2;
 	this.acceleration = 1.05;
-	this.brightness = random( 50, 70 );
+	this.brightness = random( 5, 70 );
 	// circle target indicator radius
-	this.targetRadius = 1;
+	this.targetRadius = 10;
 }
 
 // update firework
