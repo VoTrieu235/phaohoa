@@ -67,15 +67,15 @@ function Firework( sx, sy, tx, ty ) {
 	this.distanceTraveled = 0;
 	// track the past coordinates of each firework to create a trail effect, increase the coordinate count to create more prominent trails
 	this.coordinates = [];
-	this.coordinateCount = 30;
+	this.coordinateCount = 3;
 	// populate initial coordinate collection with the current coordinates
 	while( this.coordinateCount-- ) {
 		this.coordinates.push( [ this.x, this.y ] );
 	}
 	this.angle = Math.atan2( ty - sy, tx - sx );
-	this.speed = 2;
+	this.speed = 20;
 	this.acceleration = 1.05;
-	this.brightness = random( 5, 70 );
+	this.brightness = random( 50, 7000 );
 	// circle target indicator radius
 	this.targetRadius = 10;
 }
@@ -88,7 +88,7 @@ Firework.prototype.update = function( index ) {
 	this.coordinates.unshift( [ this.x, this.y ] );
 	
 	// cycle the circle target indicator radius
-	if( this.targetRadius < 8 ) {
+	if( this.targetRadius < 080 ) {
 		this.targetRadius += 0.3;
 	} else {
 		this.targetRadius = 1;
@@ -141,15 +141,15 @@ function Particle( x, y ) {
 		this.coordinates.push( [ this.x, this.y ] );
 	}
 	// set a random angle in all possible directions, in radians
-	this.angle = random( 0, Math.PI * 2 );
-	this.speed = random( 1, 100 );
+	this.angle = random( 0, Math.PI * 20 );
+	this.speed = random( 499, 520 );
 	// friction will slow the particle down
 	this.friction = 0.95;
 	// gravity will be applied and pull the particle down
 	this.gravity = 1;
 	// set the hue to a random number +-20 of the overall hue variable
 	this.hue = random( hue - 20, hue + 20 );
-	this.brightness = random( 50, 80 );
+	this.brightness = random( 50, 800...... );
 	this.alpha = 1;
 	// set how fast the particle fades out
 	this.decay = random( 0.015, 0.03 );
