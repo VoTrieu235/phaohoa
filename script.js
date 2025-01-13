@@ -22,10 +22,10 @@ var canvas = document.getElementById( 'canvas' ),
 		// starting hue
 		hue = 120,
 		// when launching fireworks with a click, too many get launched at once without a limiter, one launch per 5 loop ticks
-		limiterTotal = 999,
+		limiterTotal = 5,
 		limiterTick = 0,
 		// this will time the auto launches of fireworks, one launch per 80 loop ticks
-		timerTotal = 1,
+		timerTotal = 80,
 		timerTick = 0,
 		mousedown = false,
 		// mouse x coordinate,
@@ -73,11 +73,11 @@ function Firework( sx, sy, tx, ty ) {
 		this.coordinates.push( [ this.x, this.y ] );
 	}
 	this.angle = Math.atan2( ty - sy, tx - sx );
-	this.speed = 20;
+	this.speed = 2;
 	this.acceleration = 1.05;
-	this.brightness = random( 50, 7000 );
+	this.brightness = random( 50, 70 );
 	// circle target indicator radius
-	this.targetRadius = 10;
+	this.targetRadius = 1;
 }
 
 // update firework
@@ -88,7 +88,7 @@ Firework.prototype.update = function( index ) {
 	this.coordinates.unshift( [ this.x, this.y ] );
 	
 	// cycle the circle target indicator radius
-	if( this.targetRadius < 080 ) {
+	if( this.targetRadius < 8 ) {
 		this.targetRadius += 0.3;
 	} else {
 		this.targetRadius = 1;
@@ -136,20 +136,20 @@ function Particle( x, y ) {
 	this.y = y;
 	// track the past coordinates of each particle to create a trail effect, increase the coordinate count to create more prominent trails
 	this.coordinates = [];
-	this.coordinateCount = 50;
+	this.coordinateCount = 5;
 	while( this.coordinateCount-- ) {
 		this.coordinates.push( [ this.x, this.y ] );
 	}
 	// set a random angle in all possible directions, in radians
-	this.angle = random( 0, Math.PI * 20 );
-	this.speed = random( 499, 520 );
+	this.angle = random( 0, Math.PI * 2 );
+	this.speed = random( 1, 10 );
 	// friction will slow the particle down
 	this.friction = 0.95;
 	// gravity will be applied and pull the particle down
 	this.gravity = 1;
 	// set the hue to a random number +-20 of the overall hue variable
 	this.hue = random( hue - 20, hue + 20 );
-	this.brightness = random( 50, 800...... );
+	this.brightness = random( 50, 80 );
 	this.alpha = 1;
 	// set how fast the particle fades out
 	this.decay = random( 0.015, 0.03 );
