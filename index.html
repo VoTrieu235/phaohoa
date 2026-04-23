@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gửi Bé</title>
     <style>
-        /* CSS nằm luôn trong này cho tiện */
         body {
             margin: 0;
             height: 100vh;
@@ -13,112 +12,84 @@
             justify-content: center;
             align-items: center;
             background-color: #fff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Arial', sans-serif;
             overflow: hidden;
         }
 
-        .content-wrapper {
+        .container {
             text-align: center;
-            position: relative;
             width: 100%;
         }
 
-        /* Chữ đỏ đô giống video */
+        /* Chữ đỏ đoạn đầu */
         .text-red {
             color: #801a2d;
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: bold;
-            margin: 15px 0;
-            opacity: 0; /* Mặc định ẩn */
-            transform: translateY(10px);
-            transition: all 0.5s ease;
+            margin: 10px 0;
+            opacity: 0;
+            transition: opacity 0.4s ease-in;
         }
 
-        /* Khi hiện chữ */
-        .show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Chữ cảnh cuối to hơn */
-        .text-final {
+        /* Chữ xanh đen đoạn sau */
+        .text-dark {
             color: #2c3e50;
-            font-size: 4rem;
+            font-size: 4.5rem;
             font-weight: bold;
             margin: 5px 0;
+            opacity: 0;
+            transition: opacity 0.6s ease-in;
         }
 
-        /* Hình vẽ xanh nguệch ngoạc */
-        .blue-sketch {
-            position: absolute;
-            width: 50px;
-            height: 40px;
-            border: 4px solid #48dbfb;
-            border-radius: 50% 40% 60% 30%;
-            display: none;
-            right: 15%;
-            top: 65%;
-            transform: rotate(-15deg);
-        }
-
-        #sketch2 {
-            display: block;
-            position: relative;
-            margin: 20px auto;
-            right: -80px;
-            top: -100px;
-        }
-
+        .show { opacity: 1 !important; }
         .hidden { display: none !important; }
     </style>
 </head>
 <body>
 
-    <div class="content-wrapper">
+    <div class="container">
         <div id="scene1">
-            <div id="t1" class="text-red">Tớ</div>
-            <div id="t2" class="text-red">Không muốn</div>
-            <div id="t3" class="text-red">chúng ta</div>
-            <div id="t4" class="text-red" style="position: relative; display: inline-block;">
-                bỏ lỡ nhau
-                <div id="s1" class="blue-sketch"></div>
-            </div>
+            <div id="l1" class="text-red">Tớ</div>
+            <div id="l2" class="text-red">Không muốn</div>
+            <div id="l3" class="text-red">chúng ta</div>
+            <div id="l4" class="text-red">bỏ lỡ nhau</div>
         </div>
 
         <div id="scene2" class="hidden">
-            <div class="text-final">muốn</div>
-            <div class="text-final">bên</div>
-            <div id="sketch2" class="blue-sketch"></div>
+            <div id="l5" class="text-dark">muốn</div>
+            <div id="l6" class="text-dark">bên</div>
+            <div id="l7" class="text-dark">cậu</div>
         </div>
     </div>
 
     <script>
-        // JS điều khiển timeline chuẩn video
         window.onload = () => {
-            // 1. Hiện "Tớ" sau 0.5s
-            setTimeout(() => document.getElementById('t1').classList.add('show'), 500);
+            // --- TIMELINE KHỚP VIDEO ---
             
-            // 2. Hiện "Không muốn" sau 1.2s
-            setTimeout(() => document.getElementById('t2').classList.add('show'), 1200);
-            
-            // 3. Hiện "chúng ta" sau 2.0s
-            setTimeout(() => document.getElementById('t3').classList.add('show'), 2000);
-            
-            // 4. Hiện "bỏ lỡ nhau" sau 2.8s
-            setTimeout(() => {
-                document.getElementById('t4').classList.add('show');
-                document.getElementById('s1').style.display = 'block';
-            }, 2800);
+            // Cảnh 1 hiện dần lên
+            setTimeout(() => document.getElementById('l1').classList.add('show'), 500);
+            setTimeout(() => document.getElementById('l2').classList.add('show'), 1200);
+            setTimeout(() => document.getElementById('l3').classList.add('show'), 2000);
+            setTimeout(() => document.getElementById('l4').classList.add('show'), 2800);
 
-            // 5. Chuyển cảnh sau 5s (xóa sạch màn hình)
+            // Chuyển cảnh (Màn hình trắng xóa)
             setTimeout(() => {
                 document.getElementById('scene1').classList.add('hidden');
             }, 5000);
 
-            // 6. Hiện cảnh cuối sau 5.5s
+            // Cảnh 2 hiện ra
             setTimeout(() => {
                 document.getElementById('scene2').classList.remove('hidden');
-            }, 5500);
+                
+                // Hiện "muốn"
+                setTimeout(() => document.getElementById('l5').classList.add('show'), 200);
+                
+                // Hiện "bên"
+                setTimeout(() => document.getElementById('l6').classList.add('show'), 1000);
+                
+                // CHỐT HẠ: Hiện "cậu" (Giây cuối cùng của video)
+                setTimeout(() => document.getElementById('l7').classList.add('show'), 1800);
+            }, 5600);
         };
     </script>
 </body>
