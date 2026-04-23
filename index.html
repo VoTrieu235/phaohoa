@@ -11,7 +11,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #fff;
+            background-color: #ffffff;
             font-family: 'Arial', sans-serif;
             overflow: hidden;
         }
@@ -21,24 +21,24 @@
             width: 100%;
         }
 
-        /* Chữ đỏ đoạn đầu */
+        /* Chữ màu đỏ đô (Cảnh 1) */
         .text-red {
             color: #801a2d;
-            font-size: 2.8rem;
+            font-size: 3rem;
             font-weight: bold;
             margin: 10px 0;
             opacity: 0;
-            transition: opacity 0.4s ease-in;
+            transition: opacity 0.5s ease;
         }
 
-        /* Chữ xanh đen đoạn sau */
+        /* Chữ màu xanh đen (Cảnh 2) */
         .text-dark {
             color: #2c3e50;
             font-size: 4.5rem;
             font-weight: bold;
             margin: 5px 0;
             opacity: 0;
-            transition: opacity 0.6s ease-in;
+            transition: opacity 0.6s ease;
         }
 
         .show { opacity: 1 !important; }
@@ -64,20 +64,20 @@
 
     <script>
         window.onload = () => {
-            // --- TIMELINE KHỚP VIDEO ---
-            
-            // Cảnh 1 hiện dần lên
+            // --- TIMELINE CHI TIẾT ---
+
+            // Cảnh 1: Hiện từng dòng một
             setTimeout(() => document.getElementById('l1').classList.add('show'), 500);
             setTimeout(() => document.getElementById('l2').classList.add('show'), 1200);
             setTimeout(() => document.getElementById('l3').classList.add('show'), 2000);
             setTimeout(() => document.getElementById('l4').classList.add('show'), 2800);
 
-            // Chuyển cảnh (Màn hình trắng xóa)
+            // Chuyển cảnh: Xóa sạch Cảnh 1 sau 5 giây
             setTimeout(() => {
                 document.getElementById('scene1').classList.add('hidden');
             }, 5000);
 
-            // Cảnh 2 hiện ra
+            // Cảnh 2: Hiện "muốn bên cậu"
             setTimeout(() => {
                 document.getElementById('scene2').classList.remove('hidden');
                 
@@ -87,9 +87,9 @@
                 // Hiện "bên"
                 setTimeout(() => document.getElementById('l6').classList.add('show'), 1000);
                 
-                // CHỐT HẠ: Hiện "cậu" (Giây cuối cùng của video)
+                // Hiện "cậu" - Chốt hạ cảnh 2
                 setTimeout(() => document.getElementById('l7').classList.add('show'), 1800);
-            }, 5600);
+            }, 5500);
         };
     </script>
 </body>
